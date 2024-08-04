@@ -1,5 +1,5 @@
 ﻿namespace Bookstore.DTO;
 
-public class Class1
+public class BaseDTO
 {
 }

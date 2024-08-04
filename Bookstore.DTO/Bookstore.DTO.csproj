@@ -6,4 +6,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="BookCategory\" />
+      <Folder Include="Book\" />
+      <Folder Include="User\" />
+    </ItemGroup>
+
 </Project>
