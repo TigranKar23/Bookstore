@@ -1,0 +1,15 @@
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/obj/Debug/net8.0/Bookstore.DAL.csproj.AssemblyReference.cache
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/obj/Debug/net8.0/Bookstore.DAL.GeneratedMSBuildEditorConfig.editorconfig
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/obj/Debug/net8.0/Bookstore.DAL.AssemblyInfoInputs.cache
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/obj/Debug/net8.0/Bookstore.DAL.AssemblyInfo.cs
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/obj/Debug/net8.0/Bookstore.DAL.csproj.CoreCompileInputs.cache
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/obj/Debug/net8.0/Bookstore.DAL.sourcelink.json
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/bin/Debug/net8.0/Bookstore.DAL.deps.json
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/bin/Debug/net8.0/Bookstore.DAL.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/bin/Debug/net8.0/Bookstore.DAL.pdb
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/obj/Debug/net8.0/Bookstore.DAL.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/obj/Debug/net8.0/refint/Bookstore.DAL.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/obj/Debug/net8.0/Bookstore.DAL.pdb
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/obj/Debug/net8.0/ref/Bookstore.DAL.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/bin/Debug/net8.0/Bookstore.DAL.runtimeconfig.json
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/obj/Debug/net8.0/Bookstore.DAL.genruntimeconfig.cache
