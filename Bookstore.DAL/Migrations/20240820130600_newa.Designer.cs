@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Bookstore.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240817140040_new")]
-    partial class @new
+    [Migration("20240820130600_newa")]
+    partial class newa
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,9 +33,8 @@ namespace Bookstore.DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("Biography")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<long>("Biography")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");

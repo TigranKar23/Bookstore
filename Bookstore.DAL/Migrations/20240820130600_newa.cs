@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Bookstore.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class @new : Migration
+    public partial class newa : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,7 +21,7 @@ namespace Bookstore.DAL.Migrations
                     LastName = table.Column<string>(type: "text", nullable: false),
                     FirstName = table.Column<string>(type: "text", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Biography = table.Column<string>(type: "text", nullable: false),
+                    Biography = table.Column<long>(type: "bigint", nullable: false),
                     Nationality = table.Column<string>(type: "text", nullable: false),
                     Website = table.Column<string>(type: "text", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),

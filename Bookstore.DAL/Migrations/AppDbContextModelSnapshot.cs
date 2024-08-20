@@ -30,9 +30,8 @@ namespace Bookstore.DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("Biography")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<long>("Biography")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
