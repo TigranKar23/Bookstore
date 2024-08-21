@@ -1,9 +1,9 @@
-﻿using StaffProjects.BLL.Services.ErrorService;
-using StaffProjects.DTO;
+﻿using Bookstore.BLL.Services.ErrorService;
+using Bookstore.DTO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace StaffProjects.BLL.Helpers
+namespace Bookstore.BLL.Helpers
 {
     public class ErrorHelper
     {

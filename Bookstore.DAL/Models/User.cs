@@ -7,4 +7,7 @@ public class User : BaseModel
     public string Email { get; set; }
     
     public ICollection<BookUser> BookUsers { get; set; } // Связь с книгами
+    
+    public ICollection<UserSession> UserSessions { get; set; }
+
 }

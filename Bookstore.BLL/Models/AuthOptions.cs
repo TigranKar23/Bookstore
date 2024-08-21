@@ -1,4 +1,4 @@
-﻿    namespace StaffProjects.BLL.Models
+﻿    namespace Bookstore.BLL.Models
 {
     public class AuthOptions
     {

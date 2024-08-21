@@ -10,6 +10,7 @@ public class AppDbContext : DbContext
     }
     
     public DbSet<Error> Errors { get; set; }
+    
     public DbSet<UserSession> UserSessions { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Book> Books { get; set; }
@@ -46,6 +47,27 @@ public class AppDbContext : DbContext
             .HasOne(ba => ba.Author)
             .WithMany(a => a.BookAuthors)
             .HasForeignKey(ba => ba.AuthorId);
+        
+        modelBuilder.Entity<Error>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Name).IsRequired();
+        });
+
+        modelBuilder.Entity<UserSession>(entity =>
+        {
+            // Конфигурация UserSession
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Token).IsRequired()
+                .HasMaxLength(512); // Задайте размер в зависимости от ваших требований
+            entity.Property(e => e.IsExpired).IsRequired();
+
+            // Настройка связи с User
+            entity.HasOne(e => e.User)
+                .WithMany(u => u.UserSessions) // Если у User есть коллекция UserSessions
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade); // Настройка поведения удаления
+        });
         
         modelBuilder.ApplyConfiguration(new BookConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());

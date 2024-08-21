@@ -1,7 +1,7 @@
-﻿using StaffProjects.DTO;
+﻿using Bookstore.DTO;
 using System.Threading.Tasks;
 
-namespace StaffProjects.BLL.Services.ErrorService
+namespace Bookstore.BLL.Services.ErrorService
 {
     public interface IErrorService
     {

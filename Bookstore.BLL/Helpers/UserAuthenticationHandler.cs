@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using StaffProjects.BLL.Services.UserService;
+using Bookstore.BLL.Services.UserService;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
-namespace StaffProjects.BLL.Helpers
+namespace Bookstore.BLL.Helpers
 {
     public class UserAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {

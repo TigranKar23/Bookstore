@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace StaffProjects.DTO
+namespace Bookstore.DTO
 {
     public class ResponseDto<T>
     {

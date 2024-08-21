@@ -3,20 +3,21 @@ using CryptoHelper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using StaffProjects.BLL.Constants;
-using StaffProjects.BLL.Helpers;
-using StaffProjects.BLL.Models;
-using StaffProjects.DAL;
-using StaffProjects.DAL.Models;
-using StaffProjects.DTO;
-using StaffProjects.DTO.UserDtos;
+using Bookstore.BLL.Constants;
+using Bookstore.BLL.Helpers;
+using Bookstore.BLL.Models;
+using Bookstore.DAL;
+using Bookstore.DAL.Models;
+using Bookstore.DTO;
+using Bookstore.DTO.UserDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bookstore.DAL.Models;
 
-namespace StaffProjects.BLL.Services.UserService
+namespace Bookstore.BLL.Services.UserService
 {
     public class UserSessionService : IUserSessionService
     {
@@ -70,7 +71,7 @@ namespace StaffProjects.BLL.Services.UserService
             return CurrentUser;
         }
 
-        public async Task<ResponseDto<UserSessionDto>> Login(LoginDto dto)
+        public async Task<ResponseDto<UserSessionDto>> Login(UserLoginDto dto)
         {
             var response = new ResponseDto<UserSessionDto>();
 
@@ -78,7 +79,7 @@ namespace StaffProjects.BLL.Services.UserService
                                   .FirstOrDefaultAsync(x => x.UserName == dto.UserName.ToLower()
                                                                                        .Replace(" ", ""));
 
-            if (dbUser == null || !Crypto.VerifyHashedPassword(dbUser.PasswordHash, dto.Password))
+            if (dbUser == null || !Crypto.VerifyHashedPassword(dbUser.Password, dto.Password))
             {
                 return await _errorHelper.SetError(response, ErrorConstants.IncorrectEnteredData);
             }
@@ -88,7 +89,8 @@ namespace StaffProjects.BLL.Services.UserService
             var session = new UserSession()
             {
                 Token = token,
-                UserId = dbUser.Id
+                UserId = dbUser.Id,
+                CreatedDate = DateTime.UtcNow
             };
 
             _db.UserSessions.Add(session);

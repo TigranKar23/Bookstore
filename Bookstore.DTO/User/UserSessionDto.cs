@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StaffProjects.DTO.UserDtos
+namespace Bookstore.DTO.UserDtos
 {
     public class UserSessionDto
     {

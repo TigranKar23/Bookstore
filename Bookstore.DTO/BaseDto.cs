@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StaffProjects.DTO
+namespace Bookstore.DTO
 {
     public class BaseDto
     {

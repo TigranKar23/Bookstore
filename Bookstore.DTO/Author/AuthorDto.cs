@@ -4,11 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StaffProjects.DTO.UserDtos
+namespace Bookstore.DTO.AuthorDtos
 {
-    public class AuthorDto : BaseAdminDtoWithDate
+    public class AuthorDto
     {
-        public string UserName { get; set; }
-        public string Email { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public long Biography { get; set; }
+        public string Nationality { get; set; }
+        public string Website { get; set; }
+    }
+    
+    public class ResponseAuthorDto : BaseAdminDtoWithDate
+    {
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public long Biography { get; set; }
+        public string Nationality { get; set; }
+        public string Website { get; set; }
+    }
+    
+    public class ResponseAuthorsListDto
+    {
+        public IEnumerable<AuthorDto> Authors { get; set; }
     }
 }

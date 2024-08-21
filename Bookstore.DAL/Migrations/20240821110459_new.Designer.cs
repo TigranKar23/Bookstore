@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Bookstore.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240820130600_newa")]
-    partial class newa
+    [Migration("20240821110459_new")]
+    partial class @new
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -172,6 +172,32 @@ namespace Bookstore.DAL.Migrations
                     b.ToTable("BookUser");
                 });
 
+            modelBuilder.Entity("Bookstore.DAL.Models.Error", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("ModifyDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Errors");
+                });
+
             modelBuilder.Entity("Bookstore.DAL.Models.User", b =>
                 {
                     b.Property<long>("Id")
@@ -213,6 +239,41 @@ namespace Bookstore.DAL.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Bookstore.DAL.Models.UserSession", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsExpired")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("ModifyDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasMaxLength(512)
+                        .HasColumnType("character varying(512)");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserSessions");
+                });
+
             modelBuilder.Entity("Bookstore.DAL.Models.BookAuthor", b =>
                 {
                     b.HasOne("Bookstore.DAL.Models.Author", "Author")
@@ -251,6 +312,17 @@ namespace Bookstore.DAL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Bookstore.DAL.Models.UserSession", b =>
+                {
+                    b.HasOne("Bookstore.DAL.Models.User", "User")
+                        .WithMany("UserSessions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Bookstore.DAL.Models.Author", b =>
                 {
                     b.Navigation("BookAuthors");
@@ -266,6 +338,8 @@ namespace Bookstore.DAL.Migrations
             modelBuilder.Entity("Bookstore.DAL.Models.User", b =>
                 {
                     b.Navigation("BookUsers");
+
+                    b.Navigation("UserSessions");
                 });
 #pragma warning restore 612, 618
         }

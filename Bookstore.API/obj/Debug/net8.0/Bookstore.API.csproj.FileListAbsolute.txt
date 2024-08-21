@@ -7,12 +7,18 @@
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/obj/Debug/net8.0/Bookstore.API.MvcApplicationPartsAssemblyInfo.cache
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/obj/Debug/net8.0/Bookstore.API.sourcelink.json
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/appsettings.Development.json
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/appsettings.json
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Bookstore.API
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Bookstore.API.deps.json
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Bookstore.API.runtimeconfig.json
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Bookstore.API.dll
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Bookstore.API.pdb
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/AutoMapper.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/CryptoHelper.dll
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Humanizer.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Microsoft.CodeAnalysis.dll
@@ -37,6 +43,7 @@
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/System.Composition.Hosting.dll
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/System.Composition.Runtime.dll
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/System.Composition.TypedParts.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/System.Security.Permissions.dll
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/System.Text.Json.dll
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/cs/Microsoft.CodeAnalysis.resources.dll
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/de/Microsoft.CodeAnalysis.resources.dll
@@ -90,8 +97,12 @@
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Bookstore.BLL.dll
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Bookstore.DAL.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Bookstore.DTO.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Bookstore.BLL.pdb
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Bookstore.DAL.pdb
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Bookstore.DTO.pdb
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/obj/Debug/net8.0/staticwebassets.build.json
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/obj/Debug/net8.0/staticwebassets.development.json
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/obj/Debug/net8.0/staticwebassets/msbuild.Bookstore.API.Microsoft.AspNetCore.StaticWebAssets.props
@@ -106,4 +117,3 @@
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/obj/Debug/net8.0/Bookstore.API.pdb
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/obj/Debug/net8.0/Bookstore.API.genruntimeconfig.cache
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/obj/Debug/net8.0/ref/Bookstore.API.dll
-/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/appsettings.json

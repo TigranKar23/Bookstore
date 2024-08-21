@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Bookstore.DTO.BookDtos
 {
-    public class BookAuthorLinkDto : BaseAdminDtoWithDate
+    public class BookUserLinkDto : BaseAdminDtoWithDate
     {
-        public string Title { get; set; }
-        public DateTime DateOfRelease { get; set; }
-        public List<long> AuthorIds { get; set; } 
+        public long BookId { get; set; }
+        public long UserId { get; set; }
     }
 }

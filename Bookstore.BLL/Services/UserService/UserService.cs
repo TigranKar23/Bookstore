@@ -1,16 +1,17 @@
 ﻿using AutoMapper;
 using CryptoHelper;
 using Microsoft.EntityFrameworkCore;
-using StaffProjects.BLL.Constants;
-using StaffProjects.BLL.Helpers;
-using StaffProjects.DAL;
-using StaffProjects.DAL.Models;
-using StaffProjects.DTO;
-using StaffProjects.DTO.UserDtos;
+using Bookstore.BLL.Constants;
+using Bookstore.BLL.Helpers;
+using Bookstore.DAL;
+using Bookstore.DAL.Models;
+using Bookstore.DTO;
+using Bookstore.DTO.UserDtos;
 using System;
 using System.Threading.Tasks;
+using Bookstore.BLL.Services.UserService;
 
-namespace StaffProjects.BLL.Services.UserService
+namespace Bookstore.BLL.Services.UserService
 {
     public class UserService : IUserService
     {
@@ -41,10 +42,10 @@ namespace StaffProjects.BLL.Services.UserService
 
             var newUser = new User()
             {
-                FullName = dto.FullName,
                 Email = dto.UserName.ToLower().Trim(),
                 UserName = dto.UserName.ToLower().Trim(),
-                PasswordHash = Crypto.HashPassword(dto.Password),
+                Password = Crypto.HashPassword(dto.Password),
+                CreatedDate = DateTime.UtcNow
             };
 
             _db.Users.Add(newUser);

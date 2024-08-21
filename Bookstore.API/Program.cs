@@ -1,3 +1,10 @@
+using AutoMapper;
+using Bookstore.BLL.Mappers;
+using Bookstore.BLL.Services.UserService;
+using Bookstore.BLL.Helpers;
+using Bookstore.BLL.Services.AuthorService;
+using Bookstore.BLL.Services.ErrorService;
+using Bookstore.BLL.Services.UserService;
 using Bookstore.DAL;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,38 +13,38 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-// var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var mapperConfig = new MapperConfiguration(cfg => {
+    cfg.AddProfile<MappingProfile>();
+});
 
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
+builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IUserSessionService, UserSessionService>();
+builder.Services.AddScoped<ErrorHelper>();
+builder.Services.AddScoped<IUserSessionService, UserSessionService>();
+builder.Services.AddScoped<IErrorService, ErrorService>();
 
-
-// builder.Services.AddDbContext<AppDbContext>(options =>
-//     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// app.UseHttpsRedirection();
-// app.UseStaticFiles();
-//
-// app.UseRouting();
-//
-// app.UseAuthorization();
-// app.UseHttpsRedirection();
+app.UseRouting();
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();

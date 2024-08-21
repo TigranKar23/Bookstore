@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bookstore.DTO.UserDtos
+namespace Bookstore.DTO.BookDtos
 {
     public class BookDto : BaseAdminDtoWithDate
     {
-        public string UserName { get; set; }
-        public string Email { get; set; }
+        public string Title { get; set; }
+        public DateTime DateOfRelease { get; set; }
+        public List<long> AuthorIds { get; set; } 
     }
 }

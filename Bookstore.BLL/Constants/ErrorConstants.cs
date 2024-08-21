@@ -1,5 +1,5 @@
 ﻿
-namespace StaffProjects.BLL.Constants
+namespace Bookstore.BLL.Constants
 {
     public static class ErrorConstants
     {

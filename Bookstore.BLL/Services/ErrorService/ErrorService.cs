@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using StaffProjects.DAL;
-using StaffProjects.DTO;
-using System.Data.Entity;
+using Bookstore.DAL;
+using Bookstore.DTO;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
-namespace StaffProjects.BLL.Services.ErrorService
+namespace Bookstore.BLL.Services.ErrorService
 {
     public class ErrorService : IErrorService
     {
@@ -21,11 +21,14 @@ namespace StaffProjects.BLL.Services.ErrorService
         {
             var error = await _db.Errors.FirstOrDefaultAsync(x => x.Id == id);
 
-            return new ErrorModelDto()
+            if (error == null)
             {
-                Code = error.Id,
-                Description = error.Name
-            };
+                return null; // или выбросите исключение, если это необходимо
+            }
+
+            // Использование AutoMapper для преобразования модели в DTO
+            var errorDto = _mapper.Map<ErrorModelDto>(error);
+            return errorDto;
         }
     }
 }

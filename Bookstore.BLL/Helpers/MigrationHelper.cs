@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using StaffProjects.DAL;
+using Bookstore.DAL;
 using System.Threading.Tasks;
 
-namespace StaffProjects.BLL.Helpers
+namespace Bookstore.BLL.Helpers
 {
     public static class MigrationHelper
     {

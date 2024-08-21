@@ -1,0 +1,48 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Bookstore.BLL.Services.AuthorService;
+using Bookstore.DTO;
+using Bookstore.DTO.AuthorDtos;
+using System.Threading.Tasks;
+
+namespace Bookstore.API.Controllers
+{
+    [Route("api/author")]
+    // [Authorize]
+    [ApiController]
+    public class AuthorController : ControllerBase
+    {
+        private readonly IAuthorService _authorService;
+
+        public AuthorController(IAuthorService authorService)
+        {
+            _authorService = authorService;
+        }
+
+        [AllowAnonymous]
+        [HttpPost("create")]
+        public async Task<ResponseDto<ResponseAuthorDto>> Register(AuthorDto dto)
+        {
+            return await _authorService.CreateAuthor(dto);
+        }
+        
+        [AllowAnonymous]
+        [HttpPost("getAll")]
+        public async Task<ResponseDto<ResponseAuthorsListDto>> getAll(SearchDto dto)
+        {
+            return await _authorService.getAll(dto);
+        }
+        
+        [AllowAnonymous]
+        [HttpPost("getOne")]
+        public async Task<ResponseDto<ResponseAuthorDto>> getOne(BaseDto dto)
+        {
+            return await _authorService.getOne(dto);
+        }
+        
+    }
+    
+    
+
+}
