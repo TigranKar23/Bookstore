@@ -28,6 +28,6 @@ namespace Bookstore.DTO.AuthorDtos
     
     public class ResponseAuthorsListDto
     {
-        public IEnumerable<AuthorDto> Authors { get; set; }
+        public List<ResponseAuthorDto> Authors { get; set; }
     }
 }

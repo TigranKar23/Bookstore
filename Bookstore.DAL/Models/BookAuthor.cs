@@ -3,9 +3,9 @@ namespace Bookstore.DAL.Models
     public class BookAuthor : BaseModel
     {
         public long BookId { get; set; }
-        public long AuthorId { get; set; } // Измените на long, если Id в Author имеет тип long
+        public long AuthorId { get; set; }
 
-        public string Role { get; set; } // Например, "Главный автор", "Редактор"
+        public string Role { get; set; }
         public DateTime DateAdded { get; set; }
 
         public Book Book { get; set; }

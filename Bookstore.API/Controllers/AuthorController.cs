@@ -35,8 +35,8 @@ namespace Bookstore.API.Controllers
         }
         
         [AllowAnonymous]
-        [HttpPost("getOne")]
-        public async Task<ResponseDto<ResponseAuthorDto>> getOne(BaseDto dto)
+        [HttpGet("getOne/{id}")]
+        public async Task<ResponseDto<ResponseAuthorDto>> getOne([FromRoute] BaseDto dto)
         {
             return await _authorService.getOne(dto);
         }

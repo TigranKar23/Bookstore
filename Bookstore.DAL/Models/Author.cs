@@ -9,5 +9,5 @@ public class Author : BaseModel
     public string Nationality { get; set; }
     public string Website { get; set; }
     
-    public ICollection<BookAuthor> BookAuthors { get; set; }
+    public ICollection<BookAuthor> BookAuthors { get; set; } = new List<BookAuthor>();
 }

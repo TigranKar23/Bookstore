@@ -3,6 +3,7 @@ using Bookstore.BLL.Mappers;
 using Bookstore.BLL.Services.UserService;
 using Bookstore.BLL.Helpers;
 using Bookstore.BLL.Services.AuthorService;
+using Bookstore.BLL.Services.BookService;
 using Bookstore.BLL.Services.ErrorService;
 using Bookstore.BLL.Services.UserService;
 using Bookstore.DAL;
@@ -24,6 +25,7 @@ IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IUserSessionService, UserSessionService>();
