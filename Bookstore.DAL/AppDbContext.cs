@@ -16,24 +16,24 @@ public class AppDbContext : DbContext
     public DbSet<Book> Books { get; set; }
     public DbSet<Author> Authors { get; set; }
     public DbSet<BookAuthor> BookAuthors { get; set; }
+    public DbSet<BookUser> BookUsers { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        // Настройка связи многие ко многим между Book и User через BookUser
         modelBuilder.Entity<BookUser>()
-            .HasKey(bu => new { bu.BookId, bu.UserId }); // Определяем составной ключ
+            .HasKey(bu => new { bu.BookId, bu.UserId });
 
         modelBuilder.Entity<BookUser>()
             .HasOne(bu => bu.Book)
             .WithMany(b => b.BookUsers)
-            .HasForeignKey(bu => bu.BookId); // Внешний ключ на Book
+            .HasForeignKey(bu => bu.BookId);
 
         modelBuilder.Entity<BookUser>()
             .HasOne(bu => bu.User)
             .WithMany(u => u.BookUsers)
-            .HasForeignKey(bu => bu.UserId); // Внешний ключ на User
+            .HasForeignKey(bu => bu.UserId);
         
         modelBuilder.Entity<BookAuthor>()
             .HasKey(ba => new { ba.BookId, ba.AuthorId });
@@ -56,17 +56,15 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<UserSession>(entity =>
         {
-            // Конфигурация UserSession
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Token).IsRequired()
-                .HasMaxLength(512); // Задайте размер в зависимости от ваших требований
+                .HasMaxLength(512);
             entity.Property(e => e.IsExpired).IsRequired();
 
-            // Настройка связи с User
             entity.HasOne(e => e.User)
-                .WithMany(u => u.UserSessions) // Если у User есть коллекция UserSessions
+                .WithMany(u => u.UserSessions)
                 .HasForeignKey(e => e.UserId)
-                .OnDelete(DeleteBehavior.Cascade); // Настройка поведения удаления
+                .OnDelete(DeleteBehavior.Cascade);
         });
         
         modelBuilder.ApplyConfiguration(new BookConfiguration());

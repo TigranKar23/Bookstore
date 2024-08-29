@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace Bookstore.API.Controllers
 {
     [Route("api/author")]
-    // [Authorize]
     [ApiController]
     public class AuthorController : ControllerBase
     {
@@ -27,7 +26,8 @@ namespace Bookstore.API.Controllers
             return await _authorService.CreateAuthor(dto);
         }
         
-        [AllowAnonymous]
+        // [AllowAnonymous]
+        [Authorize]
         [HttpPost("getAll")]
         public async Task<ResponseDto<ResponseAuthorsListDto>> getAll(SearchDto dto)
         {

@@ -17,16 +17,38 @@ namespace Bookstore.API.Controllers
         public UserSessionController(IUserSessionService userSessionService)
         {
             _userSessionService = userSessionService;
-            Console.WriteLine("1111111111111111111111111111111111");
 
         }
 
         [HttpPost("login")]
         public async Task<ResponseDto<UserSessionDto>> Login(UserLoginDto dto)
         {
-            Console.WriteLine("1111111111111111111111111111111111");
-
             return await _userSessionService.Login(dto);
         }
+        
+        // [HttpPost("refresh")]
+        // public IActionResult Refresh([FromBody] string refreshToken)
+        // {
+        //     if (IsValidRefreshToken(refreshToken))
+        //     {
+        //         var claims = new[]
+        //         {
+        //             new Claim(JwtRegisteredClaimNames.Sub, "username"), // замените на реальные данные
+        //             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        //         };
+        //
+        //         var accessToken = _jwtService.GenerateAccessToken(claims);
+        //         var newRefreshToken = _jwtService.GenerateRefreshToken();
+        //
+        //         return Ok(new
+        //         {
+        //             AccessToken = accessToken,
+        //             RefreshToken = newRefreshToken
+        //         });
+        //     }
+        //
+        //     return Unauthorized();
+        // }
+
     }
 }

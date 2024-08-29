@@ -117,3 +117,11 @@
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/obj/Debug/net8.0/Bookstore.API.pdb
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/obj/Debug/net8.0/Bookstore.API.genruntimeconfig.cache
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/obj/Debug/net8.0/ref/Bookstore.API.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.API/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll

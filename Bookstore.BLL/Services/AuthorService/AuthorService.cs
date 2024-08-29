@@ -9,6 +9,8 @@ using Bookstore.DTO.AuthorDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Bookstore.BLL.Services.AuthorService
@@ -52,7 +54,8 @@ namespace Bookstore.BLL.Services.AuthorService
                 DateOfBirth = author.DateOfBirth,
                 Biography = author.Biography,
                 Nationality = author.Nationality,
-                Website = author.Website
+                Website = author.Website,
+                Id = author.Id
             }).ToList();
 
             var response = new ResponseDto<ResponseAuthorsListDto>
@@ -98,12 +101,31 @@ namespace Bookstore.BLL.Services.AuthorService
         public async Task<ResponseDto<ResponseAuthorDto>> getOne(BaseDto dto)
         {
             var response = new ResponseDto<ResponseAuthorDto>();
-            var author = await _db.Authors.FindAsync(dto.Id);
+
+            var author = await _db.Authors
+                .Include(a => a.BookAuthors)
+                .ThenInclude(ba => ba.Book)
+                .FirstOrDefaultAsync(a => a.Id == dto.Id);
+
             if (author == null)
             {
                 return await _errorHelpers.SetError(response, ErrorConstants.ItemNotFound);
             }
+
+            
+                
             response.Data = _mapper.Map<ResponseAuthorDto>(author);
+            
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                ReferenceHandler = ReferenceHandler.IgnoreCycles
+            };
+
+            string authorJson = JsonSerializer.Serialize(author, options);
+            Console.WriteLine("authorauthorauthorauthorauthorauthor");
+            Console.WriteLine(authorJson);
+            
 
             return response;
         }

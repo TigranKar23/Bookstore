@@ -2,6 +2,7 @@ using AutoMapper;
 using Bookstore.DAL.Models;
 using Bookstore.DTO;
 using Bookstore.DTO.AuthorDtos;
+using Bookstore.DTO.BookDtos;
 using Bookstore.DTO.UserDtos;
 
 namespace Bookstore.BLL.Mappers
@@ -10,7 +11,6 @@ namespace Bookstore.BLL.Mappers
     {
         public MappingProfile()
         {
-            // Существующий маппинг
             CreateMap<Error, ErrorModelDto>()
                 .ForMember(dest => dest.Code, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Name));
@@ -23,11 +23,18 @@ namespace Bookstore.BLL.Mappers
             
             CreateMap<Author, ResponseAuthorDto>();
 
-            // Новый маппинг для UserSession и UserSessionDto
             CreateMap<UserSession, UserSessionDto>()
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
-                .ForMember(dest => dest.Token, opt => opt.MapFrom(src => src.Token))
-                .ForMember(dest => dest.IsExpired, opt => opt.MapFrom(src => src.IsExpired));
+                .ForMember(dest => dest.Token, opt => opt.MapFrom(src => src.Token));
+            
+            CreateMap<Author, ResponseAuthorDto>()
+                .ForMember(dest => dest.BookAuthors, opt => opt.MapFrom(src => src.BookAuthors));
+
+            CreateMap<BookAuthor, ResponseBookAuthorDto>()
+                .ForMember(dest => dest.Book, opt => opt.MapFrom(src => src.Book));
+
+            CreateMap<Book, ResponseBookDto>();
+            
         }
     }
 }

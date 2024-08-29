@@ -25,7 +25,6 @@ namespace Bookstore.API.Controllers
         [HttpPost("register")]
         public async Task<ResponseDto<UserDto>> Register(UserRegisterDto dto)
         {
-            // Логирование для отладки
             Console.WriteLine("Register method called");
 
             return await _userService.Register(dto);

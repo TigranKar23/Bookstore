@@ -6,7 +6,9 @@ public class User : BaseModel
     public string Password { get; set; }
     public string Email { get; set; }
     
-    public ICollection<BookUser> BookUsers { get; set; } // Связь с книгами
+    public string? RefreshToken { get; set; } = null;
+    
+    public ICollection<BookUser> BookUsers { get; set; }
     
     public ICollection<UserSession> UserSessions { get; set; }
 

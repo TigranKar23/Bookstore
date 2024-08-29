@@ -10,26 +10,22 @@ namespace Bookstore.DAL.Configurations
         {
             base.Configure(builder);
 
-            // Составной ключ из BookId и AuthorId
             builder.HasKey(ba => new { ba.BookId, ba.AuthorId });
 
-            // Связь с таблицей Book (многие ко многим)
             builder.HasOne(ba => ba.Book)
                 .WithMany(b => b.BookAuthors)
                 .HasForeignKey(ba => ba.BookId);
 
-            // Связь с таблицей Author (многие ко многим)
             builder.HasOne(ba => ba.Author)
                 .WithMany(a => a.BookAuthors)
                 .HasForeignKey(ba => ba.AuthorId);
 
-            // Настройка дополнительных свойств
             builder.Property(ba => ba.Role)
                 .IsRequired()
-                .HasMaxLength(100); // Например, ограничение на длину строки роли
+                .HasMaxLength(100);
 
             builder.Property(ba => ba.DateAdded)
-                .IsRequired(); // Дата добавления обязательна
+                .IsRequired();
         }
     }
 }

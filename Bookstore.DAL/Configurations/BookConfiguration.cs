@@ -16,6 +16,12 @@ namespace Bookstore.DAL.Configurations
 
             builder.Property(b => b.DateOfRelease)
                 .IsRequired();
+            
+            builder.Property(b => b.Count)
+                .IsRequired();
+            
+            builder.Property(b => b.IsAvailable)
+                .IsRequired();
 
             builder.HasMany(b => b.BookAuthors)
                 .WithOne(ba => ba.Book)

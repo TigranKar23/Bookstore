@@ -23,10 +23,9 @@ namespace Bookstore.BLL.Services.ErrorService
 
             if (error == null)
             {
-                return null; // или выбросите исключение, если это необходимо
+                return null;
             }
 
-            // Использование AutoMapper для преобразования модели в DTO
             var errorDto = _mapper.Map<ErrorModelDto>(error);
             return errorDto;
         }

@@ -12,10 +12,16 @@ using Bookstore.DTO;
 using Bookstore.DTO.UserDtos;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Bookstore.DAL.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Bookstore.BLL.Services.UserService
 {
@@ -26,6 +32,8 @@ namespace Bookstore.BLL.Services.UserService
         private readonly AuthOptions _options;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContext;
+        private readonly IConfiguration _configuration;
+        private readonly JwtService _jwtService;
 
         public User CurrentUser { get; private set; }
 
@@ -33,13 +41,16 @@ namespace Bookstore.BLL.Services.UserService
                                   IOptions<AuthOptions> options,
                                   ErrorHelper errorHelper,
                                   IMapper mapper,
-                                  IHttpContextAccessor httpContext)
+                                  IHttpContextAccessor httpContext,
+                                  IConfiguration configuration, JwtService jwtService)
         {
             _db = db;
             _options = options.Value;
             _errorHelper = errorHelper;
             _mapper = mapper;
             _httpContext = httpContext;
+            _configuration = configuration;
+            _jwtService = jwtService;
         }
 
         public async Task<User> GetByToken(string token)
@@ -74,33 +85,36 @@ namespace Bookstore.BLL.Services.UserService
         public async Task<ResponseDto<UserSessionDto>> Login(UserLoginDto dto)
         {
             var response = new ResponseDto<UserSessionDto>();
-
-            var dbUser = await _db.Users
-                                  .FirstOrDefaultAsync(x => x.UserName == dto.UserName.ToLower()
-                                                                                       .Replace(" ", ""));
-
-            if (dbUser == null || !Crypto.VerifyHashedPassword(dbUser.Password, dto.Password))
+            var user = _db.Users.SingleOrDefault(u => u.UserName == dto.UserName);
+            if (user == null || !Crypto.VerifyHashedPassword(user.Password, dto.Password))
             {
-                return await _errorHelper.SetError(response, ErrorConstants.IncorrectEnteredData);
+                return await _errorHelper.SetError(response, ErrorConstants.ItemNotFound);
             }
 
-            var token = Guid.NewGuid().ToString("N") + Guid.NewGuid().ToString("N");
-
-            var session = new UserSession()
+            var claims = new[]
             {
-                Token = token,
-                UserId = dbUser.Id,
-                CreatedDate = DateTime.UtcNow
+                new Claim(JwtRegisteredClaimNames.Sub, dto.UserName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("user_id", user.Id.ToString())
             };
 
-            _db.UserSessions.Add(session);
+            var accessToken = _jwtService.GenerateAccessToken(claims);
+            var refreshToken = _jwtService.GenerateRefreshToken();
 
-            await _db.SaveChangesAsync();
+            user.RefreshToken = refreshToken;
+            // user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
+            _db.SaveChanges();
+            
+            var userSession = new UserSessionDto
+            {
+                UserId = user.Id,
+                Token = accessToken,
+                RefreshToken = refreshToken
+            };
 
-            response.Data = _mapper.Map<UserSessionDto>(await _db.UserSessions
-                                                                 .Include(x => x.User)
-                                                                 .FirstOrDefaultAsync(x => x.Id == session.Id));
+            response.Data = userSession;
             return response;
+
         }
 
         public async Task<ResponseDto<bool>> Delete()

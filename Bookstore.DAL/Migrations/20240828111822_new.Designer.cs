@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Bookstore.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240821110459_new")]
+    [Migration("20240828111822_new")]
     partial class @new
     {
         /// <inheritdoc />
@@ -77,11 +77,17 @@ namespace Bookstore.DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
+                    b.Property<int>("Count")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("DateOfRelease")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
@@ -117,7 +123,10 @@ namespace Bookstore.DAL.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
@@ -153,7 +162,10 @@ namespace Bookstore.DAL.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
@@ -224,6 +236,9 @@ namespace Bookstore.DAL.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
+
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("text");
 
                     b.Property<string>("UserName")
                         .IsRequired()

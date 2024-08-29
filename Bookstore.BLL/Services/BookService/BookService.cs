@@ -39,17 +39,20 @@ namespace Bookstore.BLL.Services.BookService
                 var searchTerm = dto.Search.ToLower().Trim();
                 books = await _db.Books
                     .Where(x => x.Title.ToLower().Trim().Contains(searchTerm))
-                    .Include(b => b.BookAuthors) // Включаем связанные BookAuthor
-                    .ThenInclude(ba => ba.Author) // Включаем связанных Author через BookAuthor
+                    .Include(b => b.BookAuthors)
+                    .ThenInclude(ba => ba.Author)
                     .ToListAsync();
             }
 
             var bookDtos = books.Select(book => new ResponseBookDto
             {
+                Id = book.Id,
                 Title = book.Title,
                 DateOfRelease = book.DateOfRelease,
+                IsAvailable = book.IsAvailable,
+                Count = book.Count,
                 AuthorIds = book.BookAuthors
-                    .Select(ba => ba.AuthorId) // Извлекаем только идентификаторы авторов
+                    .Select(ba => ba.AuthorId)
                     .ToList()
             }).ToList();
 
@@ -60,6 +63,64 @@ namespace Bookstore.BLL.Services.BookService
             
             return response;
         }
+        
+        public async Task<ResponseDto<ResponseMyBooksListDto>> GetMyBooks(long userId)
+        {
+            var response = new ResponseDto<ResponseMyBooksListDto>();
+
+            var books = await _db.BookUsers
+                .Where(bu => bu.UserId == userId)
+                .Select(bu => bu.Book)
+                .ToListAsync();
+
+            var responseBooks = books.Select(book => new ResponseMyBookDto
+            {
+                Id = book.Id,
+                Title = book.Title,
+                DateOfRelease = book.DateOfRelease,
+                // Authors = book.BookAuthors.Select(ba => ba.Author.Name).ToList() 
+            }).ToList();
+
+            response.Data = new ResponseMyBooksListDto
+            {
+                Books = responseBooks
+            };
+            return response;
+        }
+        
+        public async Task<ResponseDto<ResponseBookDto>> ByBook(long Id, long userId)
+        {
+            var response = new ResponseDto<ResponseBookDto>();
+            var book = await _db.Books.FindAsync(Id);
+            if (book == null)
+            {
+                return await _errorHelpers.SetError(response, ErrorConstants.ItemNotFound);
+            }
+
+            if (book.Count < 1)
+            {
+                return await _errorHelpers.SetError(response, ErrorConstants.BookIsOver);
+            }
+            else if(book.Count == 1)
+            {
+                book.IsAvailable = false;
+            }
+            book.Count--;
+            
+            var newBookUser = new BookUser
+            {
+                BookId = Id,
+                UserId = userId,
+                CreatedDate = DateTime.UtcNow
+            };
+
+            _db.BookUsers.Add(newBookUser);
+            await _db.SaveChangesAsync();
+            
+            response.Data = _mapper.Map<ResponseBookDto>(book);
+            return response;
+        }
+
 
         public async Task<ResponseDto<ResponseBookDto>> GetOne(BaseDto dto)
         {
@@ -78,20 +139,22 @@ namespace Bookstore.BLL.Services.BookService
         {
             var response = new ResponseDto<ResponseBookDto>();
 
-            // Проверка на уникальность названия книги (если необходимо)
             if (await _db.Books.AnyAsync(b => b.Title.ToLower().Trim() == dto.Title.ToLower().Trim()))
             {
                 return await _errorHelpers.SetError(response, ErrorConstants.DuplicateItem);
             }
 
-            // Создание новой книги
             var newBook = new Book
             {
                 Title = dto.Title,
-                DateOfRelease = dto.DateOfRelease
+                DateOfRelease = dto.DateOfRelease,
+                IsAvailable = dto.IsAvailable,
+                Count = dto.Count | 1,
             };
 
             _db.Books.Add(newBook);
+            
+            await _db.SaveChangesAsync();
 
             if (dto.AuthorIds != null && dto.AuthorIds.Any())
             {
@@ -99,21 +162,22 @@ namespace Bookstore.BLL.Services.BookService
                 {
                     BookId = newBook.Id,
                     AuthorId = authorId,
-                    Role = "Автор", // Задайте роль по умолчанию или получите из DTO, если есть
+                    Role = "Автор",
                     DateAdded = DateTime.UtcNow
                 }).ToList();
 
                 _db.BookAuthors.AddRange(bookAuthors);
             }
 
-            // Сохранение изменений
             await _db.SaveChangesAsync();
 
-            // Преобразование созданной книги в DTO
             var bookDto = new ResponseBookDto
             {
+                Id = newBook.Id,
                 Title = newBook.Title,
                 DateOfRelease = newBook.DateOfRelease,
+                IsAvailable = newBook.IsAvailable,
+                Count = newBook.Count,
                 AuthorIds = dto.AuthorIds
             };
 

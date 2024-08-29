@@ -42,7 +42,7 @@ namespace Bookstore.BLL.Services.UserService
 
             var newUser = new User()
             {
-                Email = dto.UserName.ToLower().Trim(),
+                Email = dto.Email.ToLower().Trim(),
                 UserName = dto.UserName.ToLower().Trim(),
                 Password = Crypto.HashPassword(dto.Password),
                 CreatedDate = DateTime.UtcNow
@@ -55,6 +55,11 @@ namespace Bookstore.BLL.Services.UserService
             response.Data = _mapper.Map<UserDto>(newUser);
 
             return response;
+        }
+        
+        public async Task<User?> GetUserByIdAsync(long userId)
+        {
+            return await _db.Users.FindAsync(userId);
         }
     }
 }
