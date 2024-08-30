@@ -41,6 +41,8 @@ public class UserMiddleware
                         new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                         new Claim(ClaimTypes.Name, user.UserName),
                         new Claim(ClaimTypes.Email, user.Email),
+                        new Claim(ClaimTypes.Role, user.Role.ToString())
+
                     };
 
                     var identity = new ClaimsIdentity(claims, "custom");

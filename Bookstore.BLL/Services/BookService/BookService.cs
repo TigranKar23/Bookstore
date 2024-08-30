@@ -25,20 +25,23 @@ namespace Bookstore.BLL.Services.BookService
             _errorHelpers = errorHelpers;
         }
 
-        public async Task<ResponseDto<ResponseBooksListDto>> GetAll(SearchDto dto)
+        public async Task<ResponseDto<ResponseBooksListDto>> GetAll(string? Search, string Role)
         {
             List<Book> books;
             var response = new ResponseDto<ResponseBooksListDto>();
+            bool filterByAvailability = Role.Equals("User", StringComparison.OrdinalIgnoreCase);
             
-            if (string.IsNullOrEmpty(dto.Search))
+            if (string.IsNullOrEmpty(Search))
             {
-                books = await _db.Books.ToListAsync();
+                books = await _db.Books
+                    .Where(b => !filterByAvailability || b.IsAvailable).Include(book => book.BookAuthors)
+                    .ToListAsync();
             }
             else
             {
-                var searchTerm = dto.Search.ToLower().Trim();
+                var searchTerm = Search.ToLower().Trim();
                 books = await _db.Books
-                    .Where(x => x.Title.ToLower().Trim().Contains(searchTerm))
+                    .Where(x => x.Title.ToLower().Trim().Contains(searchTerm) && (!filterByAvailability || x.IsAvailable))
                     .Include(b => b.BookAuthors)
                     .ThenInclude(ba => ba.Author)
                     .ToListAsync();
@@ -88,16 +91,16 @@ namespace Bookstore.BLL.Services.BookService
             return response;
         }
         
-        public async Task<ResponseDto<ResponseBookDto>> ByBook(long Id, long userId)
+        public async Task<ResponseDto<ResponseMyBookDto>> ByBook(long Id, long userId)
         {
-            var response = new ResponseDto<ResponseBookDto>();
+            var response = new ResponseDto<ResponseMyBookDto>();
             var book = await _db.Books.FindAsync(Id);
             if (book == null)
             {
                 return await _errorHelpers.SetError(response, ErrorConstants.ItemNotFound);
             }
 
-            if (book.Count < 1)
+            if (book.Count < 1 || !book.IsAvailable)
             {
                 return await _errorHelpers.SetError(response, ErrorConstants.BookIsOver);
             }
@@ -117,7 +120,7 @@ namespace Bookstore.BLL.Services.BookService
             _db.BookUsers.Add(newBookUser);
             await _db.SaveChangesAsync();
             
-            response.Data = _mapper.Map<ResponseBookDto>(book);
+            response.Data = _mapper.Map<ResponseMyBookDto>(book);
             return response;
         }
 

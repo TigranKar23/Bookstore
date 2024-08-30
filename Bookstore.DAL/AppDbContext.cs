@@ -21,6 +21,11 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<User>()
+            .Property(u => u.Role)
+            .HasConversion(
+                v => v.ToString(), // Сохранение как строка
+                v => (User.UserRole)Enum.Parse(typeof(User.UserRole), v));
 
         modelBuilder.Entity<BookUser>()
             .HasKey(bu => new { bu.BookId, bu.UserId });

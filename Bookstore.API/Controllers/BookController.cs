@@ -33,11 +33,14 @@ namespace Bookstore.API.Controllers
             return await _bookService.CreateBook(dto);
         }
         
-        [AllowAnonymous]
+        [Authorize]
+        [ServiceFilter(typeof(AdminRoleAttribute))] 
         [HttpPost("getAll")]
         public async Task<ResponseDto<ResponseBooksListDto>> GetAll(SearchDto dto)
         {
-            return await _bookService.GetAll(dto);
+            string roleString = User.FindFirst(ClaimTypes.Role)?.Value;
+
+            return await _bookService.GetAll(dto.Search, roleString);
         }
         
         [AllowAnonymous]
@@ -60,7 +63,7 @@ namespace Bookstore.API.Controllers
         
         [Authorize]
         [HttpGet("byBook/{id}")]
-        public async Task<ResponseDto<ResponseBookDto>> ByBook([FromRoute] long id)
+        public async Task<ResponseDto<ResponseMyBookDto>> ByBook([FromRoute] long id)
         {
             
             var strId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

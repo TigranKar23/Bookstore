@@ -12,7 +12,7 @@ namespace Bookstore.DTO.AuthorDtos
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public long Biography { get; set; }
+        public string Biography { get; set; }
         public string Nationality { get; set; }
         public string Website { get; set; }
     }
@@ -22,7 +22,7 @@ namespace Bookstore.DTO.AuthorDtos
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public long Biography { get; set; }
+        public string Biography { get; set; }
         public string Nationality { get; set; }
         public string Website { get; set; }
         

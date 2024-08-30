@@ -59,6 +59,7 @@ builder.Services.AddScoped<ErrorHelper>();
 builder.Services.AddScoped<IUserSessionService, UserSessionService>();
 builder.Services.AddScoped<IErrorService, ErrorService>();
 builder.Services.AddScoped<JwtService>();
+builder.Services.AddScoped<AdminRoleAttribute>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -83,6 +84,9 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<UserMiddleware>();
+
+// app.UseMiddleware<AdminMiddleware>();
+
 // app.UseMiddleware<AuthorizationErrorHandlerMiddleware>();
 // app.UseAuthorizationErrorHandler();
 

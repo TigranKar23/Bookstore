@@ -95,7 +95,7 @@ namespace Bookstore.BLL.Services.UserService
             {
                 new Claim(JwtRegisteredClaimNames.Sub, dto.UserName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim("user_id", user.Id.ToString())
+                new Claim("user_id", user.Id.ToString()),
             };
 
             var accessToken = _jwtService.GenerateAccessToken(claims);

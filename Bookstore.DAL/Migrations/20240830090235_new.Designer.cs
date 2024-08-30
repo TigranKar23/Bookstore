@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Bookstore.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240828111822_new")]
+    [Migration("20240830090235_new")]
     partial class @new
     {
         /// <inheritdoc />
@@ -33,8 +33,9 @@ namespace Bookstore.DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("Biography")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Biography")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
@@ -181,7 +182,7 @@ namespace Bookstore.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("BookUser");
+                    b.ToTable("BookUsers");
                 });
 
             modelBuilder.Entity("Bookstore.DAL.Models.Error", b =>
@@ -238,6 +239,10 @@ namespace Bookstore.DAL.Migrations
                         .HasColumnType("character varying(255)");
 
                     b.Property<string>("RefreshToken")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("UserName")

@@ -45,7 +45,8 @@ namespace Bookstore.BLL.Services.UserService
                 Email = dto.Email.ToLower().Trim(),
                 UserName = dto.UserName.ToLower().Trim(),
                 Password = Crypto.HashPassword(dto.Password),
-                CreatedDate = DateTime.UtcNow
+                CreatedDate = DateTime.UtcNow,
+                Role = User.UserRole.User
             };
 
             _db.Users.Add(newUser);

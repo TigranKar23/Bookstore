@@ -21,7 +21,7 @@ namespace Bookstore.DAL.Migrations
                     LastName = table.Column<string>(type: "text", nullable: false),
                     FirstName = table.Column<string>(type: "text", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Biography = table.Column<long>(type: "bigint", nullable: false),
+                    Biography = table.Column<string>(type: "text", nullable: false),
                     Nationality = table.Column<string>(type: "text", nullable: false),
                     Website = table.Column<string>(type: "text", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -77,6 +77,7 @@ namespace Bookstore.DAL.Migrations
                     UserName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     Password = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     Email = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    Role = table.Column<string>(type: "text", nullable: false),
                     RefreshToken = table.Column<string>(type: "text", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ModifyDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -119,7 +120,7 @@ namespace Bookstore.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BookUser",
+                name: "BookUsers",
                 columns: table => new
                 {
                     BookId = table.Column<long>(type: "bigint", nullable: false),
@@ -132,15 +133,15 @@ namespace Bookstore.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BookUser", x => new { x.BookId, x.UserId });
+                    table.PrimaryKey("PK_BookUsers", x => new { x.BookId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_BookUser_Books_BookId",
+                        name: "FK_BookUsers_Books_BookId",
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BookUser_Users_UserId",
+                        name: "FK_BookUsers_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -197,18 +198,18 @@ namespace Bookstore.DAL.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BookUser_CreatedDate",
-                table: "BookUser",
+                name: "IX_BookUsers_CreatedDate",
+                table: "BookUsers",
                 column: "CreatedDate");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BookUser_IsDeleted",
-                table: "BookUser",
+                name: "IX_BookUsers_IsDeleted",
+                table: "BookUsers",
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BookUser_UserId",
-                table: "BookUser",
+                name: "IX_BookUsers_UserId",
+                table: "BookUsers",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -234,7 +235,7 @@ namespace Bookstore.DAL.Migrations
                 name: "BookAuthors");
 
             migrationBuilder.DropTable(
-                name: "BookUser");
+                name: "BookUsers");
 
             migrationBuilder.DropTable(
                 name: "Errors");
