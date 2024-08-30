@@ -5,6 +5,7 @@ using Bookstore.BLL.Services.UserService;
 using Bookstore.BLL.Helpers;
 using Bookstore.BLL.Services.AuthorService;
 using Bookstore.BLL.Services.BookService;
+using Bookstore.BLL.Services.CategoryService;
 using Bookstore.BLL.Services.ErrorService;
 using Bookstore.BLL.Services.UserService;
 using Bookstore.DAL;
@@ -60,6 +61,7 @@ builder.Services.AddScoped<IUserSessionService, UserSessionService>();
 builder.Services.AddScoped<IErrorService, ErrorService>();
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<AdminRoleAttribute>();
+builder.Services.AddScoped<CategoryService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

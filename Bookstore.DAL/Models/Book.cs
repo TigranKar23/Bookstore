@@ -14,4 +14,6 @@ public class Book : BaseModel
         
         public ICollection<BookUser> BookUsers { get; set; } = new List<BookUser>();
         
+        public ICollection<BookCategory> BookCategories { get; set; } = new List<BookCategory>();
+        
 }

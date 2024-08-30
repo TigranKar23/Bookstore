@@ -148,6 +148,36 @@ namespace Bookstore.DAL.Migrations
                     b.ToTable("BookAuthors");
                 });
 
+            modelBuilder.Entity("Bookstore.DAL.Models.BookCategory", b =>
+                {
+                    b.Property<long>("BookId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("ModifyDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("BookId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("BookCategories");
+                });
+
             modelBuilder.Entity("Bookstore.DAL.Models.BookUser", b =>
                 {
                     b.Property<long>("BookId")
@@ -180,6 +210,37 @@ namespace Bookstore.DAL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("BookUsers");
+                });
+
+            modelBuilder.Entity("Bookstore.DAL.Models.Category", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("ModifyDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long?>("ParentCategoryId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentCategoryId");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Bookstore.DAL.Models.Error", b =>
@@ -310,6 +371,25 @@ namespace Bookstore.DAL.Migrations
                     b.Navigation("Book");
                 });
 
+            modelBuilder.Entity("Bookstore.DAL.Models.BookCategory", b =>
+                {
+                    b.HasOne("Bookstore.DAL.Models.Book", "Book")
+                        .WithMany("BookCategories")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bookstore.DAL.Models.Category", "Category")
+                        .WithMany("BookCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("Bookstore.DAL.Models.BookUser", b =>
                 {
                     b.HasOne("Bookstore.DAL.Models.Book", "Book")
@@ -327,6 +407,16 @@ namespace Bookstore.DAL.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Bookstore.DAL.Models.Category", b =>
+                {
+                    b.HasOne("Bookstore.DAL.Models.Category", "ParentCategory")
+                        .WithMany("Subcategories")
+                        .HasForeignKey("ParentCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("ParentCategory");
                 });
 
             modelBuilder.Entity("Bookstore.DAL.Models.UserSession", b =>
@@ -349,7 +439,16 @@ namespace Bookstore.DAL.Migrations
                 {
                     b.Navigation("BookAuthors");
 
+                    b.Navigation("BookCategories");
+
                     b.Navigation("BookUsers");
+                });
+
+            modelBuilder.Entity("Bookstore.DAL.Models.Category", b =>
+                {
+                    b.Navigation("BookCategories");
+
+                    b.Navigation("Subcategories");
                 });
 
             modelBuilder.Entity("Bookstore.DAL.Models.User", b =>

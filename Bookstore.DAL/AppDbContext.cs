@@ -18,6 +18,10 @@ public class AppDbContext : DbContext
     public DbSet<BookAuthor> BookAuthors { get; set; }
     public DbSet<BookUser> BookUsers { get; set; }
     
+    public DbSet<Category> Categories { get; set; }
+    
+    public DbSet<BookCategory> BookCategories { get; set; }
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -71,6 +75,25 @@ public class AppDbContext : DbContext
                 .HasForeignKey(e => e.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
         });
+        
+        modelBuilder.Entity<BookCategory>()
+            .HasKey(bc => new { bc.BookId, bc.CategoryId });
+
+        modelBuilder.Entity<BookCategory>()
+            .HasOne(bc => bc.Book)
+            .WithMany(b => b.BookCategories)
+            .HasForeignKey(bc => bc.BookId);
+
+        modelBuilder.Entity<BookCategory>()
+            .HasOne(bc => bc.Category)
+            .WithMany(c => c.BookCategories)
+            .HasForeignKey(bc => bc.CategoryId);
+
+        modelBuilder.Entity<Category>()
+            .HasOne(c => c.ParentCategory)
+            .WithMany(c => c.Subcategories)
+            .HasForeignKey(c => c.ParentCategoryId)
+            .OnDelete(DeleteBehavior.Restrict);
         
         modelBuilder.ApplyConfiguration(new BookConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
