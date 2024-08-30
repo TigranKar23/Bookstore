@@ -26,11 +26,20 @@ namespace Bookstore.API.Controllers
             _bookService = bookService;
         }
 
-        [AllowAnonymous]
+        [Authorize]
+        [ServiceFilter(typeof(AdminRoleAttribute))]
         [HttpPost("create")]
-        public async Task<ResponseDto<ResponseBookDto>> Register(BookDto dto)
+        public async Task<ResponseDto<ResponseBookDto>> CreateBook(BookDto dto)
         {
             return await _bookService.CreateBook(dto);
+        }
+        
+        [Authorize]
+        [ServiceFilter(typeof(AdminRoleAttribute))]
+        [HttpPost("update")]
+        public async Task<ResponseDto<ResponseBookDto>> UpdateBook(UpdateBookDto dto)
+        {
+            return await _bookService.UpdateBook(dto);
         }
         
         [Authorize]

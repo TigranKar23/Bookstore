@@ -188,6 +188,66 @@ namespace Bookstore.BLL.Services.BookService
 
             return response;
         }
+        
+        public async Task<ResponseDto<ResponseBookDto>> UpdateBook(UpdateBookDto dto)
+        {
+            var response = new ResponseDto<ResponseBookDto>();
+    
+            var book = await _db.Books
+                .FirstOrDefaultAsync(b => b.Title.ToLower().Trim() == dto.Title.ToLower().Trim());
+
+            if (book == null)
+            {
+                return await _errorHelpers.SetError(response, ErrorConstants.ItemNotFound);
+            }
+
+            if (dto.DateOfRelease.HasValue)
+                book.DateOfRelease = dto.DateOfRelease.Value;
+    
+            if (dto.Count.HasValue)
+                book.Count = dto.Count.Value;
+    
+            if (dto.IsAvailable.HasValue)
+                book.IsAvailable = dto.IsAvailable.Value;
+    
+            _db.Books.Update(book);
+
+            if (dto.AuthorIds != null && dto.AuthorIds.Any())
+            {
+                var existingAuthors = await _db.BookAuthors
+                    .Where(ba => ba.BookId == book.Id)
+                    .ToListAsync();
+
+                _db.BookAuthors.RemoveRange(existingAuthors);
+
+                var bookAuthors = dto.AuthorIds.Select(authorId => new BookAuthor
+                {
+                    BookId = book.Id,
+                    AuthorId = authorId,
+                    Role = "Автор",
+                    DateAdded = DateTime.UtcNow
+                }).ToList();
+
+                _db.BookAuthors.AddRange(bookAuthors);
+            }
+
+            await _db.SaveChangesAsync();
+
+            var bookDto = new ResponseBookDto
+            {
+                Id = book.Id,
+                Title = book.Title,
+                DateOfRelease = book.DateOfRelease,
+                IsAvailable = book.IsAvailable,
+                Count = book.Count,
+                AuthorIds = dto.AuthorIds ?? new List<long>()
+            };
+
+            response.Data = bookDto;
+
+            return response;
+        }
+
 
     }
 }

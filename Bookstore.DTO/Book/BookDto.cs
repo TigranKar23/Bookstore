@@ -37,6 +37,17 @@ namespace Bookstore.DTO.BookDtos
         public List<long> AuthorIds { get; set; } 
     }
     
+    public class UpdateBookDto
+    {
+        public string? Title { get; set; }
+        public DateTime? DateOfRelease { get; set; }
+        
+        public int? Count { get; set; }
+        
+        public bool? IsAvailable { get; set; }
+        public List<long>? AuthorIds { get; set; } 
+    }
+    
     public class ResponseBooksListDto
     {
         public List<ResponseBookDto> Books { get; set; }

@@ -19,14 +19,14 @@ namespace Bookstore.API.Controllers
             _authorService = authorService;
         }
 
-        [AllowAnonymous]
+        [Authorize]
+        [ServiceFilter(typeof(AdminRoleAttribute))]
         [HttpPost("create")]
         public async Task<ResponseDto<ResponseAuthorDto>> Register(AuthorDto dto)
         {
             return await _authorService.CreateAuthor(dto);
         }
         
-        // [AllowAnonymous]
         [Authorize]
         [HttpPost("getAll")]
         public async Task<ResponseDto<ResponseAuthorsListDto>> getAll(SearchDto dto)
