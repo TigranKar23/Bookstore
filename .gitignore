@@ -174,6 +174,9 @@ nCrunchTemp_*
 *.mm.*
 AutoTest.Net/
 
+bin/
+obj/
+
 # Web workbench (sass)
 .sass-cache/
 
