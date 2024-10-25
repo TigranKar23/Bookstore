@@ -16,3 +16,21 @@
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.BLL/obj/Debug/net8.0/refint/Bookstore.BLL.dll
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.BLL/obj/Debug/net8.0/Bookstore.BLL.pdb
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.BLL/obj/Debug/net8.0/ref/Bookstore.BLL.dll
+C:\Development\Projects\Bookstore\Bookstore.BLL\bin\Debug\net8.0\Bookstore.BLL.deps.json
+C:\Development\Projects\Bookstore\Bookstore.BLL\bin\Debug\net8.0\Bookstore.BLL.dll
+C:\Development\Projects\Bookstore\Bookstore.BLL\bin\Debug\net8.0\Bookstore.BLL.pdb
+C:\Development\Projects\Bookstore\Bookstore.BLL\bin\Debug\net8.0\Bookstore.DAL.dll
+C:\Development\Projects\Bookstore\Bookstore.BLL\bin\Debug\net8.0\Bookstore.DTO.dll
+C:\Development\Projects\Bookstore\Bookstore.BLL\bin\Debug\net8.0\Bookstore.DAL.pdb
+C:\Development\Projects\Bookstore\Bookstore.BLL\bin\Debug\net8.0\Bookstore.DTO.pdb
+C:\Development\Projects\Bookstore\Bookstore.BLL\obj\Debug\net8.0\Bookstore.BLL.csproj.AssemblyReference.cache
+C:\Development\Projects\Bookstore\Bookstore.BLL\obj\Debug\net8.0\Bookstore.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Development\Projects\Bookstore\Bookstore.BLL\obj\Debug\net8.0\Bookstore.BLL.AssemblyInfoInputs.cache
+C:\Development\Projects\Bookstore\Bookstore.BLL\obj\Debug\net8.0\Bookstore.BLL.AssemblyInfo.cs
+C:\Development\Projects\Bookstore\Bookstore.BLL\obj\Debug\net8.0\Bookstore.BLL.csproj.CoreCompileInputs.cache
+C:\Development\Projects\Bookstore\Bookstore.BLL\obj\Debug\net8.0\Bookstore.BLL.sourcelink.json
+C:\Development\Projects\Bookstore\Bookstore.BLL\obj\Debug\net8.0\Bookstor.54AC8EA4.Up2Date
+C:\Development\Projects\Bookstore\Bookstore.BLL\obj\Debug\net8.0\Bookstore.BLL.dll
+C:\Development\Projects\Bookstore\Bookstore.BLL\obj\Debug\net8.0\refint\Bookstore.BLL.dll
+C:\Development\Projects\Bookstore\Bookstore.BLL\obj\Debug\net8.0\Bookstore.BLL.pdb
+C:\Development\Projects\Bookstore\Bookstore.BLL\obj\Debug\net8.0\ref\Bookstore.BLL.dll

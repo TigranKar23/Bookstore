@@ -13,3 +13,18 @@
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/obj/Debug/net8.0/Bookstore.DAL.pdb
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/obj/Debug/net8.0/Bookstore.DAL.genruntimeconfig.cache
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DAL/obj/Debug/net8.0/ref/Bookstore.DAL.dll
+C:\Development\Projects\Bookstore\Bookstore.DAL\bin\Debug\net8.0\Bookstore.DAL.deps.json
+C:\Development\Projects\Bookstore\Bookstore.DAL\bin\Debug\net8.0\Bookstore.DAL.runtimeconfig.json
+C:\Development\Projects\Bookstore\Bookstore.DAL\bin\Debug\net8.0\Bookstore.DAL.dll
+C:\Development\Projects\Bookstore\Bookstore.DAL\bin\Debug\net8.0\Bookstore.DAL.pdb
+C:\Development\Projects\Bookstore\Bookstore.DAL\obj\Debug\net8.0\Bookstore.DAL.csproj.AssemblyReference.cache
+C:\Development\Projects\Bookstore\Bookstore.DAL\obj\Debug\net8.0\Bookstore.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Development\Projects\Bookstore\Bookstore.DAL\obj\Debug\net8.0\Bookstore.DAL.AssemblyInfoInputs.cache
+C:\Development\Projects\Bookstore\Bookstore.DAL\obj\Debug\net8.0\Bookstore.DAL.AssemblyInfo.cs
+C:\Development\Projects\Bookstore\Bookstore.DAL\obj\Debug\net8.0\Bookstore.DAL.csproj.CoreCompileInputs.cache
+C:\Development\Projects\Bookstore\Bookstore.DAL\obj\Debug\net8.0\Bookstore.DAL.sourcelink.json
+C:\Development\Projects\Bookstore\Bookstore.DAL\obj\Debug\net8.0\Bookstore.DAL.dll
+C:\Development\Projects\Bookstore\Bookstore.DAL\obj\Debug\net8.0\refint\Bookstore.DAL.dll
+C:\Development\Projects\Bookstore\Bookstore.DAL\obj\Debug\net8.0\Bookstore.DAL.pdb
+C:\Development\Projects\Bookstore\Bookstore.DAL\obj\Debug\net8.0\Bookstore.DAL.genruntimeconfig.cache
+C:\Development\Projects\Bookstore\Bookstore.DAL\obj\Debug\net8.0\ref\Bookstore.DAL.dll
