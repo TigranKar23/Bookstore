@@ -23,10 +23,6 @@ namespace Bookstore.BLL.Mappers
             
             CreateMap<Author, ResponseAuthorDto>();
 
-            CreateMap<UserSession, UserSessionDto>()
-                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
-                .ForMember(dest => dest.Token, opt => opt.MapFrom(src => src.Token));
-            
             CreateMap<Author, ResponseAuthorDto>()
                 .ForMember(dest => dest.BookAuthors, opt => opt.MapFrom(src => src.BookAuthors));
 

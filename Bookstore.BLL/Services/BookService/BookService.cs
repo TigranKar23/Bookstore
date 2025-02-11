@@ -67,7 +67,7 @@ namespace Bookstore.BLL.Services.BookService
             return response;
         }
         
-        public async Task<ResponseDto<ResponseMyBooksListDto>> GetMyBooks(long userId)
+        public async Task<ResponseDto<ResponseMyBooksListDto>> GetMyBooks(string userId)
         {
             var response = new ResponseDto<ResponseMyBooksListDto>();
 
@@ -91,7 +91,7 @@ namespace Bookstore.BLL.Services.BookService
             return response;
         }
         
-        public async Task<ResponseDto<ResponseMyBookDto>> ByBook(long Id, long userId)
+        public async Task<ResponseDto<ResponseMyBookDto>> ByBook(string Id, string userId)
         {
             var response = new ResponseDto<ResponseMyBookDto>();
             var book = await _db.Books.FindAsync(Id);
@@ -240,7 +240,7 @@ namespace Bookstore.BLL.Services.BookService
                 DateOfRelease = book.DateOfRelease,
                 IsAvailable = book.IsAvailable,
                 Count = book.Count,
-                AuthorIds = dto.AuthorIds ?? new List<long>()
+                AuthorIds = dto.AuthorIds ?? new List<string>()
             };
 
             response.Data = bookDto;

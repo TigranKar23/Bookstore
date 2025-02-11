@@ -10,6 +10,7 @@ using Bookstore.DTO.UserDtos;
 using System;
 using System.Threading.Tasks;
 using Bookstore.BLL.Services.UserService;
+using UserRole = Bookstore.DAL.Models.UserRole;
 
 namespace Bookstore.BLL.Services.UserService
 {
@@ -18,17 +19,15 @@ namespace Bookstore.BLL.Services.UserService
         private readonly AppDbContext _db;
         private readonly IMapper _mapper;
         private readonly ErrorHelper _errorHelpers;
-        private readonly IUserSessionService _userSessionService;
 
         public UserService(AppDbContext db,
                            IMapper mapper, 
-                           ErrorHelper errorHelpers, 
-                           IUserSessionService userSessionService)
+                           ErrorHelper errorHelpers
+                           )
         {
             _db = db;
             _mapper = mapper;
             _errorHelpers = errorHelpers;
-            _userSessionService = userSessionService;
         }
 
         public async Task<ResponseDto<UserDto>> Register(UserRegisterDto dto)
@@ -40,13 +39,19 @@ namespace Bookstore.BLL.Services.UserService
                 return await _errorHelpers.SetError(response, ErrorConstants.EmailInUse);
             }
 
+            var role = new Role()
+            {
+                Name = "Anna"
+            };
+
             var newUser = new User()
             {
                 Email = dto.Email.ToLower().Trim(),
                 UserName = dto.UserName.ToLower().Trim(),
-                Password = Crypto.HashPassword(dto.Password),
-                CreatedDate = DateTime.UtcNow,
-                Role = User.UserRole.User
+                PasswordHash = Crypto.HashPassword(dto.Password),
+                // Password = Crypto.HashPassword(dto.Password),
+                // CreatedDate = DateTime.UtcNow,
+                // UserRole = User.UserRole.User
             };
 
             _db.Users.Add(newUser);

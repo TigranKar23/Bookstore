@@ -1,11 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Bookstore.BLL.Services.UserService;
 using Bookstore.DTO;
 using Bookstore.DTO.UserDtos;
-using System.Threading.Tasks;
-using Bookstore.BLL.Services.UserService;
 
 namespace Bookstore.API.Controllers
 {

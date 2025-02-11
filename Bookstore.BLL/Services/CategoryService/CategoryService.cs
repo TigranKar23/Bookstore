@@ -86,7 +86,7 @@ namespace Bookstore.BLL.Services.CategoryService
         return response;
     }
     
-    public async Task<ResponseDto<CategoryDto>> GetCategoryById(int id)
+    public async Task<ResponseDto<CategoryDto>> GetCategoryById(string id)
     {
         var response = new ResponseDto<CategoryDto>();
 
@@ -137,7 +137,7 @@ namespace Bookstore.BLL.Services.CategoryService
         return response;
     }
 
-    public async Task<ResponseDto<bool>> DeleteCategory(int id)
+    public async Task<ResponseDto<bool>> DeleteCategory(string id)
     {
         var response = new ResponseDto<bool>();
 

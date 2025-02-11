@@ -24,16 +24,6 @@ public class AuthorizationFilter : IAsyncActionFilter
             return;
         }
 
-        var userSession = await _db.UserSessions.Include(x => x.User)
-            .FirstOrDefaultAsync(x => x.Token == token);
-
-        if (userSession == null || userSession.CreatedDate.AddHours(24) < DateTime.UtcNow)
-        {
-            context.Result = new UnauthorizedResult();
-            return;
-        }
-
-        context.HttpContext.Items["User"] = userSession.User;
 
         await next();
     }

@@ -11,7 +11,7 @@ namespace Bookstore.BLL.Services.BookService
         Task<ResponseDto<ResponseBookDto>> UpdateBook(UpdateBookDto dto);
         Task<ResponseDto<ResponseBooksListDto>> GetAll(string? Search, string Role);
         Task<ResponseDto<ResponseBookDto>> GetOne(BaseDto dto);
-        Task<ResponseDto<ResponseMyBookDto>> ByBook(long Id, long userId);
-        Task<ResponseDto<ResponseMyBooksListDto>> GetMyBooks(long userId);
+        Task<ResponseDto<ResponseMyBookDto>> ByBook(string Id, string userId);
+        Task<ResponseDto<ResponseMyBooksListDto>> GetMyBooks(string userId);
     }
 }

@@ -2,8 +2,8 @@ namespace Bookstore.DAL.Models
 {
     public class BookAuthor : BaseModel
     {
-        public long BookId { get; set; }
-        public long AuthorId { get; set; }
+        public string BookId { get; set; }
+        public string AuthorId { get; set; }
 
         public string Role { get; set; }
         public DateTime DateAdded { get; set; }

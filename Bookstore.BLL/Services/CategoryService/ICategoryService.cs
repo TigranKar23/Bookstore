@@ -9,8 +9,8 @@ namespace Bookstore.BLL.Services.CategoryService
     {
         Task<ResponseDto<CategoryDto>> CreateCategory(CreateCategoryDto dto);
         Task<ResponseDto<List<CategoryDto>>> GetAllCategories();
-        Task<ResponseDto<CategoryDto>> GetCategoryById(int id);
+        Task<ResponseDto<CategoryDto>> GetCategoryById(string id);
         Task<ResponseDto<CategoryDto>> UpdateCategory(UpdateCategoryDto dto);
-        Task<ResponseDto<bool>> DeleteCategory(int id);
+        Task<ResponseDto<bool>> DeleteCategory(string id);
     }
 }

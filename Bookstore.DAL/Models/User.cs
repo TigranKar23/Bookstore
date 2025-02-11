@@ -1,22 +1,19 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace Bookstore.DAL.Models;
 
-public class User : BaseModel
+public class User : IdentityUser
 {
-    public enum UserRole
-    {
-        User,
-        Admin
-    }
 
-    public string UserName { get; set; }
-    public string Password { get; set; }
-    public string Email { get; set; }
+    // public string UserName { get; set; }
+    // public string Password { get; set; }
+    // public string Email { get; set; }
     
-    public UserRole Role { get; set; } = UserRole.User;
+    
     public string? RefreshToken { get; set; } = null;
+    
+    public ICollection<UserRole> UserRoles { get; set; }
     
     public ICollection<BookUser> BookUsers { get; set; }
     
-    public ICollection<UserSession> UserSessions { get; set; }
-
 }

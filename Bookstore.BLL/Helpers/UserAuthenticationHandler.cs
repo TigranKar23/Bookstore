@@ -5,18 +5,19 @@ using Bookstore.BLL.Services.UserService;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Bookstore.DAL.Models;
 
 namespace Bookstore.BLL.Helpers
 {
     public class UserAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
-        private readonly IUserSessionService _userService;
+        private readonly IUserService _userService;
 
         public UserAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> options,
                                          ILoggerFactory logger,
                                          UrlEncoder encoder,
                                          ISystemClock clock,
-                                         IUserSessionService userService) : base(options, logger, encoder, clock)
+                                         IUserService userService) : base(options, logger, encoder, clock)
         {
             _userService = userService;
         }
@@ -32,7 +33,8 @@ namespace Bookstore.BLL.Helpers
                 return AuthenticateResult.Fail("Authorization not provided");
             }
 
-            var user = await _userService.GetByToken(token);
+            // var user = await _userService.GetUserByIdAsync(token);
+            User user = null;
 
             if (user == null)
             {

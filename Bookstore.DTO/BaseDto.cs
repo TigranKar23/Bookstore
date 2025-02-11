@@ -4,7 +4,7 @@ namespace Bookstore.DTO
 {
     public class BaseDto
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
     }
 
     public class BaseDtoWithDate : BaseDto

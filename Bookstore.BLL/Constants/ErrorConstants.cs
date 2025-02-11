@@ -3,14 +3,14 @@ namespace Bookstore.BLL.Constants
 {
     public static class ErrorConstants
     {
-        public const long GeneralError = 1;
-        public const long Unauthorized = 2;
-        public const long WrongAuthorizationToken = 3;
-        public const long UserNotFound = 4;
-        public const long IncorrectEnteredData = 5;
-        public const long ItemNotFound = 6;
-        public const long DuplicateItem = 7;
-        public const long EmailInUse = 8;
-        public const long BookIsOver = 9;
+        public const string GeneralError = "1";
+        public const string Unauthorized = "2";
+        public const string WrongAuthorizationToken = "3";
+        public const string UserNotFound = "4";
+        public const string IncorrectEnteredData = "5";
+        public const string ItemNotFound = "6";
+        public const string DuplicateItem = "7";
+        public const string EmailInUse = "8";
+        public const string BookIsOver = "9";
     }
 }

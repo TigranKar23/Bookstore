@@ -1,36 +1,37 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Development\\Bookstore\\Bookstore.BLL\\Bookstore.BLL.csproj": {}
+    "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.BLL/Bookstore.BLL.csproj": {}
   },
   "projects": {
-    "C:\\Development\\Bookstore\\Bookstore.BLL\\Bookstore.BLL.csproj": {
+    "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.BLL/Bookstore.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\Bookstore\\Bookstore.BLL\\Bookstore.BLL.csproj",
+        "projectUniqueName": "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.BLL/Bookstore.BLL.csproj",
         "projectName": "Bookstore.BLL",
-        "projectPath": "C:\\Development\\Bookstore\\Bookstore.BLL\\Bookstore.BLL.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\Bookstore\\Bookstore.BLL\\obj\\",
+        "projectPath": "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.BLL/Bookstore.BLL.csproj",
+        "packagesPath": "/Users/admin/.nuget/packages/",
+        "outputPath": "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.BLL/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/admin/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Development\\Bookstore\\Bookstore.DAL\\Bookstore.DAL.csproj": {
-                "projectPath": "C:\\Development\\Bookstore\\Bookstore.DAL\\Bookstore.DAL.csproj"
+              "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DAL/Bookstore.DAL.csproj": {
+                "projectPath": "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DAL/Bookstore.DAL.csproj"
               },
-              "C:\\Development\\Bookstore\\Bookstore.DTO\\Bookstore.DTO.csproj": {
-                "projectPath": "C:\\Development\\Bookstore\\Bookstore.DTO\\Bookstore.DTO.csproj"
+              "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/Bookstore.DTO.csproj": {
+                "projectPath": "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/Bookstore.DTO.csproj"
               }
             }
           }
@@ -39,11 +40,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -102,26 +98,27 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Development\\Bookstore\\Bookstore.DAL\\Bookstore.DAL.csproj": {
+    "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DAL/Bookstore.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\Bookstore\\Bookstore.DAL\\Bookstore.DAL.csproj",
+        "projectUniqueName": "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DAL/Bookstore.DAL.csproj",
         "projectName": "Bookstore.DAL",
-        "projectPath": "C:\\Development\\Bookstore\\Bookstore.DAL\\Bookstore.DAL.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\Bookstore\\Bookstore.DAL\\obj\\",
+        "projectPath": "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DAL/Bookstore.DAL.csproj",
+        "packagesPath": "/Users/admin/.nuget/packages/",
+        "outputPath": "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DAL/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/admin/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -134,17 +131,16 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.7, )"
@@ -184,26 +180,27 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Development\\Bookstore\\Bookstore.DTO\\Bookstore.DTO.csproj": {
+    "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/Bookstore.DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\Bookstore\\Bookstore.DTO\\Bookstore.DTO.csproj",
+        "projectUniqueName": "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/Bookstore.DTO.csproj",
         "projectName": "Bookstore.DTO",
-        "projectPath": "C:\\Development\\Bookstore\\Bookstore.DTO\\Bookstore.DTO.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\Bookstore\\Bookstore.DTO\\obj\\",
+        "projectPath": "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/Bookstore.DTO.csproj",
+        "packagesPath": "/Users/admin/.nuget/packages/",
+        "outputPath": "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/admin/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -216,11 +213,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -242,7 +234,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

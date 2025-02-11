@@ -14,7 +14,7 @@ namespace Bookstore.BLL.Helpers
             _errorService = errorService;
         }
 
-        public async Task<ResponseDto<T>> SetError<T>(ResponseDto<T> response, long id)
+        public async Task<ResponseDto<T>> SetError<T>(ResponseDto<T> response, string id)
         {
             var error = await _errorService.GetById(id);
 

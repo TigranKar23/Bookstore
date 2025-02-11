@@ -17,7 +17,7 @@ namespace Bookstore.BLL.Services.ErrorService
             _db = db;
         }
 
-        public async Task<ErrorModelDto> GetById(long id)
+        public async Task<ErrorModelDto> GetById(string id)
         {
             var error = await _db.Errors.FirstOrDefaultAsync(x => x.Id == id);
 

@@ -46,14 +46,14 @@ namespace Bookstore.API.Controllers
         [Authorize]
         [ServiceFilter(typeof(AdminRoleAttribute))]
         [HttpDelete("delete/{id}")]
-        public async Task<ResponseDto<bool>> DeleteCategory([FromRoute] int id)
+        public async Task<ResponseDto<bool>> DeleteCategory([FromRoute] string id)
         {
             return await _categoryService.DeleteCategory(id);
         }
 
         [AllowAnonymous]
         [HttpGet("getOne/{id}")]
-        public async Task<ResponseDto<CategoryDto>> GetCategoryById([FromRoute] int id)
+        public async Task<ResponseDto<CategoryDto>> GetCategoryById([FromRoute] string id)
         {
             return await _categoryService.GetCategoryById(id);
         }

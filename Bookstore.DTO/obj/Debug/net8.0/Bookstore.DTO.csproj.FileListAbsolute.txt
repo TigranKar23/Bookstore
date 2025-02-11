@@ -10,3 +10,15 @@
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DTO/obj/Debug/net8.0/refint/Bookstore.DTO.dll
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DTO/obj/Debug/net8.0/Bookstore.DTO.pdb
 /Users/admin/Documents/Development/Learning Projects/Bookstore/Bookstore.DTO/obj/Debug/net8.0/ref/Bookstore.DTO.dll
+/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/bin/Debug/net8.0/Bookstore.DTO.deps.json
+/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/bin/Debug/net8.0/Bookstore.DTO.dll
+/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/bin/Debug/net8.0/Bookstore.DTO.pdb
+/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/obj/Debug/net8.0/Bookstore.DTO.GeneratedMSBuildEditorConfig.editorconfig
+/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/obj/Debug/net8.0/Bookstore.DTO.AssemblyInfoInputs.cache
+/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/obj/Debug/net8.0/Bookstore.DTO.AssemblyInfo.cs
+/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/obj/Debug/net8.0/Bookstore.DTO.csproj.CoreCompileInputs.cache
+/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/obj/Debug/net8.0/Bookstore.DTO.sourcelink.json
+/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/obj/Debug/net8.0/Bookstore.DTO.dll
+/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/obj/Debug/net8.0/refint/Bookstore.DTO.dll
+/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/obj/Debug/net8.0/Bookstore.DTO.pdb
+/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/obj/Debug/net8.0/ref/Bookstore.DTO.dll

@@ -65,18 +65,16 @@
             {
                 
                 string strId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                long userId = long.Parse(strId);
-                return await _bookService.GetMyBooks(userId);
+                return await _bookService.GetMyBooks(strId);
             }
             
             [Authorize]
             [HttpGet("byBook/{id}")]
-            public async Task<ResponseDto<ResponseMyBookDto>> ByBook([FromRoute] long id)
+            public async Task<ResponseDto<ResponseMyBookDto>> ByBook([FromRoute] string id)
             {
                 
                 var strId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                long userId = long.Parse(strId);
-                return await _bookService.ByBook(id, userId);
+                return await _bookService.ByBook(id, strId);
             }
             
         }

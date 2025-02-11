@@ -14,7 +14,7 @@ namespace Bookstore.DTO.BookDtos
         public int Count { get; set; }
         
         public bool IsAvailable { get; set; }
-        public List<long> AuthorIds { get; set; }
+        public List<string> AuthorIds { get; set; }
     }
     
     public class ResponseMyBookDto: BaseDto
@@ -34,7 +34,7 @@ namespace Bookstore.DTO.BookDtos
         public int Count { get; set; }
         
         public bool IsAvailable { get; set; }
-        public List<long> AuthorIds { get; set; } 
+        public List<string> AuthorIds { get; set; } 
     }
     
     public class UpdateBookDto
@@ -45,7 +45,7 @@ namespace Bookstore.DTO.BookDtos
         public int? Count { get; set; }
         
         public bool? IsAvailable { get; set; }
-        public List<long>? AuthorIds { get; set; } 
+        public List<string>? AuthorIds { get; set; } 
     }
     
     public class ResponseBooksListDto
