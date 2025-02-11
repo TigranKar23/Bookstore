@@ -7,10 +7,8 @@ using Bookstore.DAL;
 using Bookstore.DAL.Models;
 using Bookstore.DTO;
 using Bookstore.DTO.UserDtos;
-using System;
-using System.Threading.Tasks;
-using Bookstore.BLL.Services.UserService;
-using UserRole = Bookstore.DAL.Models.UserRole;
+
+using Microsoft.AspNetCore.Identity; 
 
 namespace Bookstore.BLL.Services.UserService
 {
@@ -19,15 +17,29 @@ namespace Bookstore.BLL.Services.UserService
         private readonly AppDbContext _db;
         private readonly IMapper _mapper;
         private readonly ErrorHelper _errorHelpers;
+        
+        private readonly UserManager<User> _userManager; 
+        private readonly RoleManager<Role> _roleManager; 
+        private readonly SignInManager<User> _signInManager; 
+        private readonly AppDbContext _context; 
+        
 
         public UserService(AppDbContext db,
                            IMapper mapper, 
-                           ErrorHelper errorHelpers
+                           ErrorHelper errorHelpers,
+                           UserManager<User> userManager, 
+                           RoleManager<Role> roleManager, 
+                           SignInManager<User> signInManager, 
+                           AppDbContext context
                            )
         {
             _db = db;
             _mapper = mapper;
             _errorHelpers = errorHelpers;
+            _userManager = userManager; 
+            _roleManager = roleManager; 
+            _signInManager = signInManager; 
+            _context = context; 
         }
 
         public async Task<ResponseDto<UserDto>> Register(UserRegisterDto dto)
@@ -39,19 +51,12 @@ namespace Bookstore.BLL.Services.UserService
                 return await _errorHelpers.SetError(response, ErrorConstants.EmailInUse);
             }
 
-            var role = new Role()
-            {
-                Name = "Anna"
-            };
 
             var newUser = new User()
             {
                 Email = dto.Email.ToLower().Trim(),
                 UserName = dto.UserName.ToLower().Trim(),
                 PasswordHash = Crypto.HashPassword(dto.Password),
-                // Password = Crypto.HashPassword(dto.Password),
-                // CreatedDate = DateTime.UtcNow,
-                // UserRole = User.UserRole.User
             };
 
             _db.Users.Add(newUser);
@@ -61,6 +66,37 @@ namespace Bookstore.BLL.Services.UserService
             response.Data = _mapper.Map<UserDto>(newUser);
 
             return response;
+        }
+        
+        // Register a New User 
+        public async Task<IdentityResult> RegisterUserAsync(string username, string password, string email, string fullName) 
+        { 
+            var user = new User 
+            { 
+                UserName = username, 
+                Email = email, 
+            }; 
+ 
+            return await _userManager.CreateAsync(user, password); 
+        } 
+        
+        // Authenticate User (Sign-in) 
+        public async Task<bool> AuthenticateAsync(string username, string password) 
+        { 
+            var user = await _userManager.FindByNameAsync(username); 
+            if (user == null) return false; 
+ 
+            var result = await _signInManager.PasswordSignInAsync(user, password, false, false); 
+            return result.Succeeded; 
+        } 
+ 
+        // Get All Users 
+        public async Task<List<User>> GetAllUsersAsync() 
+        { 
+            return await _userManager.Users 
+                .Include(u => u.UserRoles) 
+                .ThenInclude(ur => ur.Role) 
+                .ToListAsync(); 
         }
         
         public async Task<User?> GetUserByIdAsync(long userId)

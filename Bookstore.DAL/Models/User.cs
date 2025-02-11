@@ -16,4 +16,6 @@ public class User : IdentityUser
     
     public ICollection<BookUser> BookUsers { get; set; }
     
+    public virtual ICollection<IdentityUserToken<string>> UserTokens { get; set; }
+    
 }
