@@ -8,25 +8,31 @@
     "net8.0": []
   },
   "packageFolders": {
-    "/Users/admin/.nuget/packages/": {}
+    "C:\\Users\\Tigra\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/Bookstore.DTO.csproj",
+      "projectUniqueName": "C:\\Development\\BS\\Bookstore\\Bookstore.DTO\\Bookstore.DTO.csproj",
       "projectName": "Bookstore.DTO",
-      "projectPath": "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/Bookstore.DTO.csproj",
-      "packagesPath": "/Users/admin/.nuget/packages/",
-      "outputPath": "/Users/admin/Documents/Development/BS/Bookstore/Bookstore.DTO/obj/",
+      "projectPath": "C:\\Development\\BS\\Bookstore\\Bookstore.DTO\\Bookstore.DTO.csproj",
+      "packagesPath": "C:\\Users\\Tigra\\.nuget\\packages\\",
+      "outputPath": "C:\\Development\\BS\\Bookstore\\Bookstore.DTO\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/admin/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Tigra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -60,7 +66,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
