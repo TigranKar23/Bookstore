@@ -9,8 +9,10 @@ using Bookstore.BLL.Services.CategoryService;
 using Bookstore.BLL.Services.ErrorService;
 using Bookstore.BLL.Services.UserService;
 using Bookstore.DAL;
+using Bookstore.DAL.Models;
 using Bookstore.DAL.Seed;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -21,6 +23,12 @@ builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/login";
+    options.AccessDeniedPath = "/accessdenied";
+});
 
 var mapperConfig = new MapperConfiguration(cfg => {
     cfg.AddProfile<MappingProfile>();
@@ -48,6 +56,8 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
+
+builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddHttpContextAccessor();
@@ -64,15 +74,23 @@ builder.Services.AddScoped<CategoryService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+    
+
+builder.Services.AddIdentity<User, Role>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var dbContext = services.GetRequiredService<AppDbContext>();
-
+    await DataSeeder.SeedRoles(scope.ServiceProvider);
     await ErrorSeeder.SeedAsync(dbContext);
 }
+
+
 
 // if (app.Environment.IsDevelopment())
 // {
@@ -89,6 +107,7 @@ app.UseMiddleware<UserMiddleware>();
 
 // app.UseMiddleware<AuthorizationErrorHandlerMiddleware>();
 // app.UseAuthorizationErrorHandler();
+
 
 app.MapControllers();
 

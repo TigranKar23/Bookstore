@@ -24,10 +24,8 @@ public class UserMiddleware
         {
             var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
             
-            
 
             var userIdClaim = context.User.FindFirst("user_id")?.Value;
-            
             
 
             if (!string.IsNullOrEmpty(userIdClaim) && long.TryParse(userIdClaim, out var userId))

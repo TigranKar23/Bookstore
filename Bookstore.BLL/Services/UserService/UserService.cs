@@ -41,44 +41,78 @@ namespace Bookstore.BLL.Services.UserService
             _signInManager = signInManager; 
             _context = context; 
         }
-
-        public async Task<ResponseDto<UserDto>> Register(UserRegisterDto dto)
+        
+        public async Task<ResponseDto<UserDto>> Register(UserRegisterDto model)
         {
             var response = new ResponseDto<UserDto>();
 
-            if (await _db.Users.AnyAsync(x => x.Email == dto.UserName.ToLower().Trim()))
-            {
+            var userExists = await _userManager.FindByEmailAsync(model.Email);
+            if (userExists != null)
                 return await _errorHelpers.SetError(response, ErrorConstants.EmailInUse);
-            }
 
-
-            var newUser = new User()
+            var user = new User
             {
-                Email = dto.Email.ToLower().Trim(),
-                UserName = dto.UserName.ToLower().Trim(),
-                PasswordHash = Crypto.HashPassword(dto.Password),
+                UserName = model.Email,
+                Email = model.Email,
             };
 
-            _db.Users.Add(newUser);
+            var result = await _userManager.CreateAsync(user, model.Password);
 
-            await _db.SaveChangesAsync();
+            // if (!result.Succeeded)
+            // {
+            //     return await _errorHelpers.SetError(response, ErrorConstants.GeneralError);
+            // }
 
-            response.Data = _mapper.Map<UserDto>(newUser);
+            // Добавление роли "User"
+            if (await _roleManager.RoleExistsAsync("User"))
+            {
+                await _userManager.AddToRoleAsync(user, "User");
+            }
+
+            response.Data = _mapper.Map<UserDto>(user);
 
             return response;
         }
+
+
+
+        // public async Task<ResponseDto<UserDto>> Register(UserRegisterDto dto)
+        // {
+        //     var response = new ResponseDto<UserDto>();
+        //
+        //     if (await _db.Users.AnyAsync(x => x.Email == dto.UserName.ToLower().Trim()))
+        //     {
+        //         return await _errorHelpers.SetError(response, ErrorConstants.EmailInUse);
+        //     }
+        //
+        //
+        //     var newUser = new User()
+        //     {
+        //         Email = dto.Email.ToLower().Trim(),
+        //         UserName = dto.UserName.ToLower().Trim(),
+        //         PasswordHash = Crypto.HashPassword(dto.Password),
+        //     };
+        //
+        //     _db.Users.Add(newUser);
+        //
+        //     await _db.SaveChangesAsync();
+        //
+        //     response.Data = _mapper.Map<UserDto>(newUser);
+        //
+        //     return response;
+        // }
         
         // Register a New User 
-        public async Task<IdentityResult> RegisterUserAsync(string username, string password, string email, string fullName) 
-        { 
-            var user = new User 
-            { 
-                UserName = username, 
-                Email = email, 
-            }; 
- 
-            return await _userManager.CreateAsync(user, password); 
-        } 
+        // public async Task<IdentityResult> RegisterUserAsync(string username, string password, string email, string fullName) 
+        // { 
+        //     var user = new User 
+        //     { 
+        //         UserName = username, 
+        //         Email = email, 
+        //     }; 
+        //
+        //     return await _userManager.CreateAsync(user, password); 
+        // } 
         
         // Authenticate User (Sign-in) 
         public async Task<bool> AuthenticateAsync(string username, string password) 

@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 
-public class AppDbContext : IdentityDbContext
+public class AppDbContext : IdentityDbContext <User, Role, string, 
+    IdentityUserClaim<string>, UserRole, IdentityUserLogin<string>, 
+    IdentityRoleClaim<string>, IdentityUserToken<string>>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
@@ -67,7 +69,9 @@ public class AppDbContext : IdentityDbContext
         
         modelBuilder.Entity<User>().ToTable("Users");
         modelBuilder.Entity<Role>().ToTable("Roles");
-        modelBuilder.Entity<UserRole>().ToTable("UserRoles");
+        
+        modelBuilder.Entity<UserRole>()
+            .HasKey(ur => new { ur.UserId, ur.RoleId });
         
         modelBuilder.Entity<UserRole>()
             .HasOne(ur => ur.User)
@@ -129,6 +133,7 @@ public class AppDbContext : IdentityDbContext
             .WithMany(c => c.Subcategories)
             .HasForeignKey(c => c.ParentCategoryId)
             .OnDelete(DeleteBehavior.Restrict);
+        
         
         
         
