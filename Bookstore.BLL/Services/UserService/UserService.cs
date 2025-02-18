@@ -57,13 +57,7 @@ namespace Bookstore.BLL.Services.UserService
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
-
-            // if (!result.Succeeded)
-            // {
-            //     return await _errorHelpers.SetError(response, ErrorConstants.GeneralError);
-            // }
-
-            // Добавление роли "User"
+            
             if (await _roleManager.RoleExistsAsync("User"))
             {
                 await _userManager.AddToRoleAsync(user, "User");
@@ -73,48 +67,7 @@ namespace Bookstore.BLL.Services.UserService
 
             return response;
         }
-
-
-
-        // public async Task<ResponseDto<UserDto>> Register(UserRegisterDto dto)
-        // {
-        //     var response = new ResponseDto<UserDto>();
-        //
-        //     if (await _db.Users.AnyAsync(x => x.Email == dto.UserName.ToLower().Trim()))
-        //     {
-        //         return await _errorHelpers.SetError(response, ErrorConstants.EmailInUse);
-        //     }
-        //
-        //
-        //     var newUser = new User()
-        //     {
-        //         Email = dto.Email.ToLower().Trim(),
-        //         UserName = dto.UserName.ToLower().Trim(),
-        //         PasswordHash = Crypto.HashPassword(dto.Password),
-        //     };
-        //
-        //     _db.Users.Add(newUser);
-        //
-        //     await _db.SaveChangesAsync();
-        //
-        //     response.Data = _mapper.Map<UserDto>(newUser);
-        //
-        //     return response;
-        // }
         
-        // Register a New User 
-        // public async Task<IdentityResult> RegisterUserAsync(string username, string password, string email, string fullName) 
-        // { 
-        //     var user = new User 
-        //     { 
-        //         UserName = username, 
-        //         Email = email, 
-        //     }; 
-        //
-        //     return await _userManager.CreateAsync(user, password); 
-        // } 
-        
-        // Authenticate User (Sign-in) 
         public async Task<bool> AuthenticateAsync(string username, string password) 
         { 
             var user = await _userManager.FindByNameAsync(username); 
@@ -124,7 +77,6 @@ namespace Bookstore.BLL.Services.UserService
             return result.Succeeded; 
         } 
  
-        // Get All Users 
         public async Task<List<User>> GetAllUsersAsync() 
         { 
             return await _userManager.Users 

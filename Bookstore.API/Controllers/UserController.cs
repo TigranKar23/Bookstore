@@ -80,7 +80,6 @@ namespace Bookstore.API.Controllers
                 var accessToken = _jwtService.GenerateAccessToken(claims);
                 var refreshToken = _jwtService.GenerateRefreshToken();
 
-                // var token = await GenerateJwtTokenAsync(user); // Генерация JWT токена или другого типа токена
                 return Ok(new { accessToken, refreshToken });
             }
 
