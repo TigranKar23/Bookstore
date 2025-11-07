@@ -152,7 +152,7 @@ namespace Bookstore.BLL.Services.BookService
                 Title = dto.Title,
                 DateOfRelease = dto.DateOfRelease,
                 IsAvailable = dto.IsAvailable,
-                Count = dto.Count | 1,
+                Count = Math.Max(dto.Count, 1),
             };
 
             _db.Books.Add(newBook);
@@ -194,44 +194,77 @@ namespace Bookstore.BLL.Services.BookService
             var response = new ResponseDto<ResponseBookDto>();
     
             var book = await _db.Books
-                .FirstOrDefaultAsync(b => b.Title.ToLower().Trim() == dto.Title.ToLower().Trim());
+                .Include(b => b.BookAuthors)
+                .FirstOrDefaultAsync(b => b.Id == dto.Id);
 
             if (book == null)
             {
                 return await _errorHelpers.SetError(response, ErrorConstants.ItemNotFound);
             }
 
+            if (!string.IsNullOrWhiteSpace(dto.Title))
+            {
+                var normalizedTitle = dto.Title.Trim();
+                var normalizedCurrentTitle = book.Title?.Trim() ?? string.Empty;
+
+                if (!normalizedTitle.Equals(normalizedCurrentTitle, StringComparison.OrdinalIgnoreCase))
+                {
+                    var titleAlreadyExists = await _db.Books
+                        .AnyAsync(b => b.Id != book.Id && b.Title != null && b.Title.ToLower().Trim() == normalizedTitle.ToLower());
+
+                    if (titleAlreadyExists)
+                    {
+                        return await _errorHelpers.SetError(response, ErrorConstants.DuplicateItem);
+                    }
+                }
+
+                book.Title = normalizedTitle;
+            }
+
             if (dto.DateOfRelease.HasValue)
                 book.DateOfRelease = dto.DateOfRelease.Value;
-    
+
             if (dto.Count.HasValue)
                 book.Count = dto.Count.Value;
-    
+
             if (dto.IsAvailable.HasValue)
                 book.IsAvailable = dto.IsAvailable.Value;
-    
+
+            book.ModifyDate = DateTime.UtcNow;
+
             _db.Books.Update(book);
 
-            if (dto.AuthorIds != null && dto.AuthorIds.Any())
+            if (dto.AuthorIds != null)
             {
-                var existingAuthors = await _db.BookAuthors
-                    .Where(ba => ba.BookId == book.Id)
-                    .ToListAsync();
+                _db.BookAuthors.RemoveRange(book.BookAuthors);
 
-                _db.BookAuthors.RemoveRange(existingAuthors);
+                var bookAuthors = dto.AuthorIds
+                    .Select(authorId => new BookAuthor
+                    {
+                        BookId = book.Id,
+                        AuthorId = authorId,
+                        Role = "Автор",
+                        DateAdded = DateTime.UtcNow
+                    })
+                    .ToList();
 
-                var bookAuthors = dto.AuthorIds.Select(authorId => new BookAuthor
+                if (bookAuthors.Any())
                 {
-                    BookId = book.Id,
-                    AuthorId = authorId,
-                    Role = "Автор",
-                    DateAdded = DateTime.UtcNow
-                }).ToList();
-
-                _db.BookAuthors.AddRange(bookAuthors);
+                    _db.BookAuthors.AddRange(bookAuthors);
+                    book.BookAuthors = bookAuthors;
+                }
+                else
+                {
+                    book.BookAuthors = new List<BookAuthor>();
+                }
             }
 
             await _db.SaveChangesAsync();
+
+            var authorIds = await _db.BookAuthors
+                .Where(ba => ba.BookId == book.Id)
+                .Select(ba => ba.AuthorId)
+                .ToListAsync();
 
             var bookDto = new ResponseBookDto
             {
@@ -240,7 +273,7 @@ namespace Bookstore.BLL.Services.BookService
                 DateOfRelease = book.DateOfRelease,
                 IsAvailable = book.IsAvailable,
                 Count = book.Count,
-                AuthorIds = dto.AuthorIds ?? new List<long>()
+                AuthorIds = authorIds
             };
 
             response.Data = bookDto;
