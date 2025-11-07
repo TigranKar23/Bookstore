@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bookstore.DTO;
 
 namespace Bookstore.DTO.BookDtos
 {
@@ -37,11 +38,11 @@ namespace Bookstore.DTO.BookDtos
         public List<long> AuthorIds { get; set; } 
     }
     
-    public class UpdateBookDto
+    public class UpdateBookDto : BaseDto
     {
         public string? Title { get; set; }
         public DateTime? DateOfRelease { get; set; }
-        
+
         public int? Count { get; set; }
         
         public bool? IsAvailable { get; set; }
